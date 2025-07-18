@@ -21,7 +21,9 @@ app.use(express.json())
 /*
  * Connect to MongoDB
  */
-mongoose.connect(process.env.MONGO_URI).then(() => {
+mongoose.connect(process.env.MONGO_URI, {bufferCommands: true,
+  bufferMaxEntries: 0,
+  bufferTimeoutMS: 20000,}).then(() => {
     console.log("Connected to DB");
 }).catch((err) => {
     console.error(err);
